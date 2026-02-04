@@ -1,66 +1,138 @@
-import Image from "next/image";
+import Link from "next/link";
+import { MdStorefront, MdLocalShipping, MdSecurity } from "react-icons/md";
+import {
+  FaUsers,
+  FaShoppingBag,
+  FaAward,
+  FaHeadset,
+  FaMoneyBillWave,
+  FaUndoAlt,
+  FaGift,
+} from "react-icons/fa";
 import styles from "./page.module.css";
 
 export default function Home() {
   return (
-    <div className={styles.page}>
-      <main className={styles.main}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className={styles.intro}>
-          <h1>To get started, edit the page.tsx file.</h1>
-          <p>
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Learning
-            </a>{" "}
-            center.
+    <>
+      <section className={styles.hero}>
+        <div className={styles.heroContent}>
+          <h1 className={styles.heroTitle}>
+            Welcome to Our{" "}
+            <span className={styles.highlight}>Premium Store</span>
+          </h1>
+          <p className={styles.heroDescription}>
+            Discover amazing products at unbeatable prices. Quality, style and
+            convenience all in one place.
           </p>
+          <div className={styles.heroButtons}>
+            <Link href="/products" className={styles.primaryBtn}>
+              Shop Now
+            </Link>
+            <Link href="/products" className={styles.secondaryBtn}>
+              View Collection
+            </Link>
+          </div>
         </div>
-        <div className={styles.ctas}>
-          <a
-            className={styles.primary}
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className={styles.logo}
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className={styles.secondary}
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      <section className={styles.stats}>
+        <div className={styles.statsGrid}>
+          <div className={styles.statCard}>
+            <FaUsers className={styles.statIcon} />
+            <h3 className={styles.statNumber}>10K+</h3>
+            <p className={styles.statLabel}>Happy Customers</p>
+          </div>
+          <div className={styles.statCard}>
+            <FaShoppingBag className={styles.statIcon} />
+            <h3 className={styles.statNumber}>500+</h3>
+            <p className={styles.statLabel}>Products Available</p>
+          </div>
+          <div className={styles.statCard}>
+            <FaHeadset className={styles.statIcon} />
+            <h3 className={styles.statNumber}>24/7</h3>
+            <p className={styles.statLabel}>Customer Support</p>
+          </div>
+          <div className={styles.statCard}>
+            <FaAward className={styles.statIcon} />
+            <h3 className={styles.statNumber}>100%</h3>
+            <p className={styles.statLabel}>Quality Guarantee</p>
+          </div>
         </div>
-      </main>
-    </div>
+      </section>
+
+      <section className={styles.features}>
+        <h2 className={styles.sectionTitle}>Why Choose Us</h2>
+        <div className={styles.featureGrid}>
+          <div className={styles.featureCard}>
+            <div className={styles.featureIcon}>
+              <MdStorefront />
+            </div>
+            <h3 className={styles.featureTitle}>Quality Products</h3>
+            <p className={styles.featureDescription}>
+              Carefully curated selection of premium items for every need
+            </p>
+          </div>
+          <div className={styles.featureCard}>
+            <div className={styles.featureIcon}>
+              <MdLocalShipping />
+            </div>
+            <h3 className={styles.featureTitle}>Fast Delivery</h3>
+            <p className={styles.featureDescription}>
+              Quick and reliable shipping to your doorstep
+            </p>
+          </div>
+          <div className={styles.featureCard}>
+            <div className={styles.featureIcon}>
+              <MdSecurity />
+            </div>
+            <h3 className={styles.featureTitle}>Secure Payment</h3>
+            <p className={styles.featureDescription}>
+              Safe and encrypted transactions for peace of mind
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.benefits}>
+        <h2 className={styles.sectionTitle}>Shopping Benefits</h2>
+        <div className={styles.benefitsGrid}>
+          <div className={styles.benefitCard}>
+            <FaMoneyBillWave className={styles.benefitIcon} />
+            <h3 className={styles.benefitTitle}>Best Prices</h3>
+            <p className={styles.benefitDescription}>
+              Competitive pricing on all products with regular discounts and
+              special offers
+            </p>
+          </div>
+          <div className={styles.benefitCard}>
+            <FaUndoAlt className={styles.benefitIcon} />
+            <h3 className={styles.benefitTitle}>Easy Returns</h3>
+            <p className={styles.benefitDescription}>
+              30-day hassle-free return policy for your complete peace of mind
+            </p>
+          </div>
+          <div className={styles.benefitCard}>
+            <FaGift className={styles.benefitIcon} />
+            <h3 className={styles.benefitTitle}>Gift Wrapping</h3>
+            <p className={styles.benefitDescription}>
+              Free gift wrapping service available on all orders
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section className={styles.cta}>
+        <div className={styles.ctaContent}>
+          <h2 className={styles.ctaTitle}>Ready to Start Shopping?</h2>
+          <p className={styles.ctaDescription}>
+            Explore our extensive collection and find exactly what you&apos;re
+            looking for!
+          </p>
+          <Link href="/products" className={styles.ctaBtn}>
+            Browse Products
+          </Link>
+        </div>
+      </section>
+    </>
   );
 }

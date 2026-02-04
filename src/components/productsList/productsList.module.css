@@ -1,0 +1,111 @@
+.productsList {
+  border: 2px solid #ccc;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgb(251, 249, 247);
+  transition: all 0.3s ease-in-out; 
+}
+.productsList:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  transform: translateY(-5px);
+}
+.productImage {
+  width: 150px;
+  height: 150px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto;
+}
+.productTitle {
+  font-size: 1.1em;
+  font-weight: 600;
+  margin: 15px 0 10px;
+  text-align: center;
+  line-height: 1.3;
+  color: #333;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  height: 2.6em;
+}
+.productDescription {
+  font-size: 0.9em;
+  color: #626262;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  height: 4.2em;
+}
+.productRating {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  margin: 8px 0;
+  font-size: 0.9em;
+}
+.rate {
+  color: #f59e0b;
+  font-weight: 600;
+  display: flex;
+  gap: 4px;
+}
+.starIcon {
+  color: #f59e0b;
+  font-size: 1em;
+}
+.count {
+  color: #666;
+  font-size: 0.9em;
+}
+.productPrice {
+  font-size: 1.2em;
+  font-weight: bold;
+  color: #123d6d;
+  text-align: center;
+  margin-top: 15px;
+}
+.productButtons {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+.productButtons button {
+  flex: 1;
+  padding: 12px 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.95em;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.productButtons button:first-child {
+  background-color: #123d6d;
+  color: white;
+  box-shadow: 0 2px 4px rgba(18, 61, 109, 0.2);
+}
+.productButtons button:first-child:hover {
+  background-color: #0e2f55;
+  box-shadow: 0 4px 8px rgba(18, 61, 109, 0.3);
+  transform: translateY(-2px);
+}
+.productButtons button:last-child {
+  background-color: transparent;
+  color: #123d6d;
+  border: 2px solid #123d6d;
+  box-shadow: 0 2px 4px rgba(18, 61, 109, 0.1);
+}
+.productButtons button:last-child:hover {
+  background-color: #123d6d;
+  color: white;
+  box-shadow: 0 4px 8px rgba(18, 61, 109, 0.2);
+  transform: translateY(-2px);
+}
