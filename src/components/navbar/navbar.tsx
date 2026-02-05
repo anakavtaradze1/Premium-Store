@@ -10,9 +10,14 @@ import {
 } from "react-icons/ai";
 import { MdStorefront } from "react-icons/md";
 import styles from "./navbar.module.css";
+import { useAppSelector } from "@/lib/hooks";
 
 export function Navbar() {
   const pathname = usePathname();
+  const cartTotalQuantity = useAppSelector((state) => state.cart.totalQuantity);
+  const favoritesCount = useAppSelector(
+    (state) => state.favorites.items.length,
+  );
 
   const isActive = (path: string) => {
     if (path === "/") {
@@ -48,7 +53,12 @@ export function Navbar() {
               href="/cart"
               className={`${styles.navLink} ${isActive("/cart") ? styles.active : ""}`}
             >
-              <AiOutlineShoppingCart className={styles.navIcon} />
+              <div className={styles.cartIconWrapper}>
+                <AiOutlineShoppingCart className={styles.navIcon} />
+                {cartTotalQuantity > 0 && (
+                  <span className={styles.cartBadge}>{cartTotalQuantity}</span>
+                )}
+              </div>
               <span>Cart</span>
             </Link>
           </li>
@@ -57,7 +67,12 @@ export function Navbar() {
               href="/favorites"
               className={`${styles.navLink} ${isActive("/favorites") ? styles.active : ""}`}
             >
-              <AiOutlineHeart className={styles.navIcon} />
+              <div className={styles.cartIconWrapper}>
+                <AiOutlineHeart className={styles.navIcon} />
+                {favoritesCount > 0 && (
+                  <span className={styles.cartBadge}>{favoritesCount}</span>
+                )}
+              </div>
               <span>Favorites</span>
             </Link>
           </li>

@@ -63,8 +63,7 @@
   transform: translateY(-3px);
 }
 .features {
-  padding: 60px 20px;
-  background: #f9fafb;
+  padding: 30px 20px;
 }
 .sectionTitle {
   text-align: center;
@@ -84,6 +83,7 @@
   background: white;
   padding: 2.5rem 2rem;
   border-radius: 16px;
+  border: 1px solid #f0f0f0;
   text-align: center;
   transition: all 0.3s ease;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -181,7 +181,6 @@
 }
 .benefits {
   padding: 50px 20px;
-  background: #f9fafb;
 }
 .benefitsGrid {
   display: grid;
@@ -192,6 +191,7 @@
 }
 .benefitCard {
   background: white;
+  border: 1px solid #f0f0f0;
   padding: 2.5rem;
   border-radius: 16px;
   text-align: center;

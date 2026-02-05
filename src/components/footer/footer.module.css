@@ -1,0 +1,164 @@
+.footer {
+  background: #0e2f55;
+  color: white;
+  padding: 50px 0 0;
+}
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.footerContent {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 40px;
+  padding-bottom: 40px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+}
+.footerSection h3 {
+  font-size: 1.3em;
+  margin-bottom: 20px;
+  color: #fff;
+  font-weight: 600;
+}
+.footerSection p {
+  color: rgba(255, 255, 255, 0.85);
+  line-height: 1.6;
+  margin-bottom: 15px;
+}
+.contact {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 0.95em;
+}
+.contactItem svg {
+  color: #4caf50;
+  font-size: 1.1em;
+}
+.links {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.links li {
+  margin-bottom: 12px;
+}
+.links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  transition: all 0.3s;
+  display: inline-block;
+}
+.links a:hover {
+  color: #4caf50;
+  transform: translateX(5px);
+}
+.newsletter {
+  display: flex;
+  margin-bottom: 20px;
+  margin-top: 15px;
+}
+.emailInput {
+  flex: 1;
+  padding: 12px 15px;
+  border: none;
+  border-radius: 25px 0 0 25px;
+  outline: none;
+  font-size: 0.95em;
+}
+.subscribeBtn {
+  padding: 12px 20px;
+  background: #4caf50;
+  border: none;
+  border-radius: 0 25px 25px 0;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.subscribeBtn:hover {
+  background: #45a049;
+  transform: scale(1.05);
+}
+.subscribeBtn svg {
+  font-size: 1.1em;
+}
+.social {
+  display: flex;
+  gap: 15px;
+}
+.social a {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.2em;
+  transition: all 0.3s;
+}
+.social a:hover {
+  background: #4caf50;
+  transform: translateY(-3px);
+}
+.footerBottom {
+  padding: 25px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+.footerBottom p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0;
+}
+.paymentMethods {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.paymentMethods span {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9em;
+}
+.paymentIcons {
+  display: flex;
+  gap: 10px;
+}
+.paymentIcon {
+  font-size: 1.5em;
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 30px 0 0;
+  }
+  .footerContent {
+    grid-template-columns: 1fr;
+    gap: 30px;
+  }
+  .footerBottom {
+    flex-direction: column;
+    text-align: center;
+  }
+  .newsletter {
+    flex-direction: column;
+  }
+  .emailInput {
+    border-radius: 25px;
+    margin-bottom: 10px;
+  }
+  .subscribeBtn {
+    border-radius: 25px;
+    width: 100%;
+  }
+}

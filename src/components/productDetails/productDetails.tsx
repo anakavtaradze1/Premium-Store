@@ -5,6 +5,10 @@ import { useParams } from "next/navigation";
 import Image from "next/image";
 import { FaStar, FaHeart, FaShareAlt, FaCheck } from "react-icons/fa";
 import styles from "./productDetails.module.css";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
+import { addToCart } from "@/lib/slices/cartSlice";
+import { toggleFavorite } from "@/lib/slices/favoritesSlice";
+import { showToast } from "@/components/Toast/Toast";
 
 interface Rating {
   rate: number;
@@ -23,6 +27,8 @@ interface Product {
 
 function ProductDetails() {
   const params = useParams<{ id: string }>();
+  const dispatch = useAppDispatch();
+  const favorites = useAppSelector((state) => state.favorites.items);
   const [productDetails, setProductDetails] = useState<Product | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
@@ -51,6 +57,41 @@ function ProductDetails() {
   const increaseQuantity = (): void => {
     setQuantity(quantity + 1);
   };
+
+  const handleAddToCart = () => {
+    if (productDetails) {
+      for (let i = 0; i < quantity; i++) {
+        dispatch(
+          addToCart({
+            id: productDetails.id,
+            name: productDetails.title,
+            price: productDetails.price,
+            image: productDetails.image,
+          }),
+        );
+      }
+      showToast(`${productDetails.title} (x${quantity}) added to cart!`);
+    }
+  };
+
+  const handleToggleFavorite = () => {
+    if (productDetails) {
+      const isFavorite = favorites.some(
+        (item) => item.id === productDetails.id,
+      );
+      dispatch(toggleFavorite(productDetails));
+
+      if (isFavorite) {
+        showToast(`${productDetails.title} removed from favorites!`);
+      } else {
+        showToast(`${productDetails.title} added to favorites!`);
+      }
+    }
+  };
+
+  const isFavorite = productDetails
+    ? favorites.some((item) => item.id === productDetails.id)
+    : false;
 
   if (error) throw error;
 
@@ -145,9 +186,11 @@ function ProductDetails() {
         </div>
 
         <div className={styles.actionButtons}>
-          <button className={styles.addToCartBtn}>Add to Cart</button>
-          <button className={styles.iconBtn}>
-            <FaHeart />
+          <button onClick={handleAddToCart} className={styles.addToCartBtn}>
+            Add to Cart
+          </button>
+          <button onClick={handleToggleFavorite} className={styles.iconBtn}>
+            <FaHeart style={{ color: isFavorite ? "#ff4444" : "inherit" }} />
           </button>
           <button className={styles.iconBtn}>
             <FaShareAlt />

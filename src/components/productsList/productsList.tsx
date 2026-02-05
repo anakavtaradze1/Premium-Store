@@ -1,7 +1,12 @@
+"use client";
+
 import Image from "next/image";
 import styles from "./productsList.module.css";
 import { FaStar } from "react-icons/fa";
 import Link from "next/link";
+import { useAppDispatch } from "@/lib/hooks";
+import { addToCart } from "@/lib/slices/cartSlice";
+import { showToast } from "@/components/Toast/Toast";
 
 interface Rating {
   rate: number;
@@ -23,6 +28,20 @@ interface ProductsListProps {
 }
 
 function ProductsList({ product }: ProductsListProps) {
+  const dispatch = useAppDispatch();
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: product.id,
+        name: product.title,
+        price: product.price,
+        image: product.image,
+      }),
+    );
+    showToast(`${product.title} added to cart!`);
+  };
+
   return (
     <div className={styles.productsList}>
       <Image
@@ -44,7 +63,7 @@ function ProductsList({ product }: ProductsListProps) {
       </div>
       <p className={styles.productPrice}>Price: ${product.price}</p>
       <div className={styles.productButtons}>
-        <button>Add to cart</button>
+        <button onClick={handleAddToCart}>Add to cart</button>
         <Link href={`/products/details/${product.id}`}>
           <button>See More</button>
         </Link>
