@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -7,6 +8,9 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Link from "next/link";
+import { useUserData } from "@/lib/hooks";
+import type { User } from "@/lib/types";
+import { loadUserProfile } from "@/lib/utils/userDataStorage";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -20,19 +24,16 @@ const validationSchema = Yup.object().shape({
 
 type LoginFormInputs = Yup.InferType<typeof validationSchema>;
 
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  [key: string]: unknown;
-}
-
 export default function LoginPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const { handleUserLogin } = useUserData();
+
+  useEffect(() => {
+    document.title = "Login";
+  }, []);
 
   const {
     register,
@@ -61,8 +62,12 @@ export default function LoginPage() {
         return;
       }
 
+      const savedProfile = loadUserProfile(user.id);
       const userDataToStore = {
         ...user,
+        ...savedProfile,
+        id: user.id,
+        password: user.password,
         rememberMe: data.rememberMe || false,
       };
 
@@ -73,6 +78,8 @@ export default function LoginPage() {
       } else {
         localStorage.removeItem("rememberMe");
       }
+
+      handleUserLogin(user.id);
 
       setSuccessMessage("Login successful!");
       reset();

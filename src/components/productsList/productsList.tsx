@@ -7,21 +7,7 @@ import Link from "next/link";
 import { useAppDispatch } from "@/lib/hooks";
 import { addToCart } from "@/lib/slices/cartSlice";
 import { showToast } from "@/components/Toast/Toast";
-
-interface Rating {
-  rate: number;
-  count: number;
-}
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: Rating;
-}
+import type { Product } from "@/lib/types";
 
 interface ProductsListProps {
   product: Product;

@@ -9,21 +9,7 @@ import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/slices/cartSlice";
 import { toggleFavorite } from "@/lib/slices/favoritesSlice";
 import { showToast } from "@/components/Toast/Toast";
-
-interface Rating {
-  rate: number;
-  count: number;
-}
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: Rating;
-}
+import type { Product } from "@/lib/types";
 
 function ProductDetails() {
   const params = useParams<{ id: string }>();
@@ -41,6 +27,7 @@ function ProductDetails() {
         );
         const data: Product = await response.json();
         setProductDetails(data);
+        document.title = data.title;
       } catch (error) {
         console.error("Error fetching product details:", error);
         setError(error as Error);

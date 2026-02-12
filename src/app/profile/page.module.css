@@ -73,6 +73,72 @@
   border-color: rgba(255, 255, 255, 0.6);
   transform: translateY(-2px);
 }
+.headerActions {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+}
+.editBtn {
+  padding: 10px 24px;
+  background: rgba(255, 255, 255, 0.9);
+  color: #123d6d;
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+}
+.editBtn:hover {
+  background: white;
+  border-color: white;
+  transform: translateY(-2px);
+}
+.successMessage {
+  background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+  color: white;
+  padding: 16px 40px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.errorMessage {
+  background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+  color: white;
+  padding: 16px 40px;
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+}
+.fieldEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.input {
+  padding: 14px 16px;
+  border: 2px solid #e5e7eb;
+  border-radius: 10px;
+  font-size: 15px;
+  color: #123d6d;
+  background: white;
+  transition: all 0.3s ease;
+  font-family: inherit;
+}
+.input:focus {
+  outline: none;
+  border-color: #123d6d;
+  box-shadow: 0 0 0 4px rgba(18, 61, 109, 0.1);
+}
+.input::placeholder {
+  color: #9ca3af;
+}
+.btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  transform: none;
+}
 .section {
   padding: 30px 40px;
   border-bottom: 1px solid #f0f0f0;
@@ -184,6 +250,11 @@
     flex-direction: column;
     align-items: flex-start;
     padding: 30px;
+  }
+  .headerActions {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 15px;
   }
   .section {
     padding: 20px 30px;

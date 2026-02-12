@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { toggleFavorite, clearFavorites } from "@/lib/slices/favoritesSlice";
 import { addToCart } from "@/lib/slices/cartSlice";
@@ -7,25 +8,15 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "./page.module.css";
 import { FaHeart, FaStar, FaShoppingCart } from "react-icons/fa";
-
-interface Rating {
-  rate: number;
-  count: number;
-}
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: Rating;
-}
+import type { Product } from "@/lib/types";
 
 export default function FavoritesPage() {
   const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favorites.items);
+
+  useEffect(() => {
+    document.title = "Favorites";
+  }, []);
 
   const handleRemoveFavorite = (product: Product) => {
     dispatch(toggleFavorite(product));

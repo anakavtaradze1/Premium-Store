@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as Yup from "yup";
@@ -7,6 +8,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import styles from "./page.module.css";
 import Link from "next/link";
+import type { User } from "@/lib/types";
 
 const validationSchema = Yup.object().shape({
   email: Yup.string()
@@ -22,19 +24,15 @@ const validationSchema = Yup.object().shape({
 
 type RegisterFormInputs = Yup.InferType<typeof validationSchema>;
 
-interface User {
-  id: number;
-  username: string;
-  email: string;
-  password: string;
-  [key: string]: unknown;
-}
-
 export default function RegisterPage() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [successMessage, setSuccessMessage] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
+  useEffect(() => {
+    document.title = "Register";
+  }, []);
 
   const {
     register,

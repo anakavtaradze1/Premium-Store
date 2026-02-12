@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import {
   removeFromCart,
@@ -13,6 +14,10 @@ import { FaTrash, FaPlus, FaMinus, FaShoppingCart } from "react-icons/fa";
 
 export default function CartPage() {
   const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    document.title = "Cart";
+  }, []);
   const { items, totalQuantity, totalAmount } = useAppSelector(
     (state) => state.cart,
   );

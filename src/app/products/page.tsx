@@ -4,21 +4,7 @@ import { useState, useEffect, useMemo } from "react";
 import styles from "./page.module.css";
 import ProductsList from "@/components/productsList/productsList";
 import { FaFilter, FaTimes, FaSearch } from "react-icons/fa";
-
-interface Rating {
-  rate: number;
-  count: number;
-}
-
-interface Product {
-  id: number;
-  title: string;
-  price: number;
-  description: string;
-  category: string;
-  image: string;
-  rating: Rating;
-}
+import type { Product } from "@/lib/types";
 
 export default function Products() {
   const [products, setProducts] = useState<Product[]>([]);
@@ -27,6 +13,10 @@ export default function Products() {
   const [minPrice, setMinPrice] = useState<string>("0");
   const [maxPrice, setMaxPrice] = useState<string>("1000");
   const [minRating, setMinRating] = useState<number>(0);
+
+  useEffect(() => {
+    document.title = "Products";
+  }, []);
   const [sortBy, setSortBy] = useState<string>("default");
   const [showFilters, setShowFilters] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
