@@ -9,7 +9,7 @@ import {
   AiOutlineUser,
   AiOutlineHeart,
 } from "react-icons/ai";
-import { MdStorefront } from "react-icons/md";
+import { MdStorefront, MdInfo } from "react-icons/md";
 import styles from "./navbar.module.css";
 import { useAppSelector } from "@/lib/hooks";
 
@@ -84,6 +84,15 @@ export function Navbar() {
                 )}
               </div>
               <span>Favorites</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/about"
+              className={`${styles.navLink} ${isActive("/about") ? styles.active : ""}`}
+            >
+              <MdInfo className={styles.navIcon} />
+              <span>About</span>
             </Link>
           </li>
           <li>
