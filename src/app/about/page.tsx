@@ -116,25 +116,25 @@ const contactInfo = [
   {
     icon: <FaEnvelope />,
     label: "Email Us",
-    value: "support@premiumstore.com",
-    link: "mailto:support@premiumstore.com",
+    value: "support@myshop.com",
+    link: "mailto:support@myshop.com",
   },
   {
     icon: <FaPhone />,
     label: "Call Us",
-    value: "+1 (800) 123-4567",
-    link: "tel:+18001234567",
+    value: "+1 (555) 123-4567",
+    link: "tel:+15551234567",
   },
   {
     icon: <FaMapMarkerAlt />,
     label: "Visit Us",
-    value: "123 Commerce St, NY 10001",
+    value: "123 Shopping Street, NY 10001",
     link: "#",
   },
   {
     icon: <FaClock />,
     label: "Working Hours",
-    value: "Mon-Fri: 9AM - 8PM EST",
+    value: "Mon-Fri: 9AM - 8PM",
     link: "#",
   },
 ];

@@ -1,0 +1,166 @@
+.hero {
+  background: linear-gradient(135deg, #123d6d 0%, #361457 80%);
+  padding: 80px 20px 60px;
+  text-align: center;
+  color: white;
+}
+.heroContent {
+  max-width: 800px;
+  margin: 0 auto;
+}
+.heroTitle {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  line-height: 1.2;
+}
+.highlight {
+  background: linear-gradient(90deg, #5b8def 0%, #a8d5ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.heroDescription {
+  font-size: 1.2rem;
+  opacity: 0.95;
+  line-height: 1.7;
+  max-width: 600px;
+  margin: 0 auto;
+}
+.content {
+  padding: 60px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.tableOfContents {
+  background: #f8fafc;
+  padding: 30px;
+  border-radius: 16px;
+  margin-bottom: 40px;
+}
+.tocTitle {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+.tocList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 10px;
+}
+.tocList li a {
+  color: #3b82f6;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 0;
+  transition: color 0.2s;
+}
+.tocList li a:hover {
+  color: #1d4ed8;
+}
+.section {
+  margin-bottom: 40px;
+  scroll-margin-top: 100px;
+}
+.sectionTitle {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.sectionTitle svg {
+  color: #3b82f6;
+}
+.sectionContent {
+  color: #475569;
+  line-height: 1.8;
+}
+.sectionContent p {
+  margin-bottom: 15px;
+}
+.sectionContent ul {
+  margin: 15px 0;
+  padding-left: 25px;
+}
+.sectionContent li {
+  margin-bottom: 10px;
+}
+.highlight-box {
+  background: linear-gradient(135deg, #eff6ff, #f0f9ff);
+  border-left: 4px solid #3b82f6;
+  padding: 20px 25px;
+  border-radius: 0 12px 12px 0;
+  margin: 20px 0;
+}
+.highlight-box p {
+  margin: 0;
+  color: #1e40af;
+}
+.dataTable {
+  width: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
+  margin: 20px 0;
+}
+.dataTable th,
+.dataTable td {
+  padding: 15px 20px;
+  text-align: left;
+}
+.dataTable th {
+  background: #f8fafc;
+  font-weight: 600;
+  color: #1e293b;
+}
+.dataTable tr:not(:last-child) {
+  border-bottom: 1px solid #e2e8f0;
+}
+.dataTable td {
+  color: #475569;
+}
+.contact {
+  background: #f8fafc;
+  padding: 40px;
+  border-radius: 16px;
+  margin-top: 40px;
+  text-align: center;
+}
+.contactTitle {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 15px;
+}
+.contactEmail {
+  color: #3b82f6;
+  font-size: 1.1rem;
+  font-weight: 500;
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 2rem;
+  }
+  .tocList {
+    grid-template-columns: 1fr;
+  }
+  .dataTable th,
+  .dataTable td {
+    padding: 12px 15px;
+    font-size: 0.9rem;
+  }
+  .sectionTitle {
+    font-size: 1.5rem;
+  }
+}

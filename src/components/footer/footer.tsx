@@ -57,10 +57,7 @@ export default function Footer() {
                 <Link href="/favorites">My Favorites</Link>
               </li>
               <li>
-                <Link href="#">Track Order</Link>
-              </li>
-              <li>
-                <Link href="#">Returns & Exchanges</Link>
+                <Link href = "/about">About Us</Link>
               </li>
             </ul>
           </div>
@@ -69,19 +66,19 @@ export default function Footer() {
             <h3>Customer Service</h3>
             <ul className={styles.links}>
               <li>
-                <Link href="#">Help Center</Link>
+                <Link href="/help-center">Help Center</Link>
               </li>
               <li>
-                <Link href="#">Shipping Info</Link>
+                <Link href="/shipping-info">Shipping Info</Link>
               </li>
               <li>
-                <Link href="#">Payment Methods</Link>
+                <Link href="/payment-methods">Payment Methods</Link>
               </li>
               <li>
-                <Link href="#">Privacy Policy</Link>
+                <Link href="/privacy-policy">Privacy Policy</Link>
               </li>
               <li>
-                <Link href="#">Terms & Conditions</Link>
+                <Link href="/terms-conditions">Terms & Conditions</Link>
               </li>
             </ul>
           </div>
