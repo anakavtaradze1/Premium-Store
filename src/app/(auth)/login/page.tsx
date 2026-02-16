@@ -83,7 +83,7 @@ export default function LoginPage() {
 
       setSuccessMessage("Login successful!");
       reset();
-      setTimeout(() => router.push("/products"), 1500);
+      setTimeout(() => router.push("/products"), 1000);
     } catch (error: unknown) {
       const errorMessage =
         error instanceof Error
@@ -159,7 +159,7 @@ export default function LoginPage() {
             disabled={isLoading}
             className={styles.submitButton}
           >
-            {isLoading ? "Logging in..." : "Login"}
+            {isLoading ? "Logging in..." : "Log in"}
           </button>
         </form>
 

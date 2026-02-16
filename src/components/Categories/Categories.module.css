@@ -1,0 +1,148 @@
+.categories {
+  padding: 50px 20px;
+  background: white;
+}
+.sectionTitle {
+  text-align: center;
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+.sectionDescription {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #666;
+  margin-bottom: 3rem;
+}
+.categoriesGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+.categoryCard {
+  background: #f8f9fa;
+  border-radius: 20px;
+  padding: 2.5rem 2rem;
+  text-align: center;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+  cursor: pointer;
+  text-decoration: none;
+  position: relative;
+  overflow: hidden;
+}
+.categoryCard::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: var(--gradient);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+.categoryCard:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+  border-color: #e0e0e0;
+}
+.categoryCard:hover::before {
+  transform: scaleX(1);
+}
+.iconWrapper {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.5rem;
+  font-size: 2rem;
+  color: white;
+  transition: transform 0.3s ease;
+}
+.categoryCard:hover .iconWrapper {
+  transform: scale(1.1) rotate(5deg);
+}
+.categoryName {
+  font-size: 1.3rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 0.5rem;
+}
+.categoryDescription {
+  font-size: 0.95rem;
+  color: #666;
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+.shopNow {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #123d6d;
+  opacity: 0;
+  transform: translateY(10px);
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+.categoryCard:hover .shopNow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2rem;
+  }
+  .categoriesGrid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  .categoryCard {
+    padding: 1.5rem 1rem;
+  }
+  .iconWrapper {
+    width: 60px;
+    height: 60px;
+    font-size: 1.5rem;
+  }
+  .categoryName {
+    font-size: 1.1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .categoriesGrid {
+    grid-template-columns: 1fr;
+    max-width: 350px;
+  }
+  .categoryCard {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    padding: 1.25rem;
+    gap: 1rem;
+  }
+  .iconWrapper {
+    width: 55px;
+    height: 55px;
+    font-size: 1.3rem;
+    margin: 0;
+    flex-shrink: 0;
+    border-radius: 14px;
+  }
+  .categoryCard:hover .iconWrapper {
+    transform: scale(1.05);
+  }
+  .categoryDescription {
+    display: none;
+  }
+  .shopNow {
+    display: none;
+  }
+}

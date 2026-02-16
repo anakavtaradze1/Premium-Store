@@ -1,12 +1,16 @@
 "use client";
 
 import { useState, useEffect, useMemo } from "react";
+import { useSearchParams } from "next/navigation";
 import styles from "./page.module.css";
 import ProductsList from "@/components/productsList/productsList";
 import { FaFilter, FaTimes, FaSearch } from "react-icons/fa";
 import type { Product } from "@/lib/types";
 
 export default function Products() {
+  const searchParams = useSearchParams();
+  const categoryFromUrl = searchParams.get("category");
+
   const [products, setProducts] = useState<Product[]>([]);
   const [error, setError] = useState<Error | null>(null);
   const [selectedCategory, setSelectedCategory] = useState<string>("all");
@@ -14,9 +18,12 @@ export default function Products() {
   const [maxPrice, setMaxPrice] = useState<string>("1000");
   const [minRating, setMinRating] = useState<number>(0);
 
+  const effectiveCategory = categoryFromUrl || selectedCategory;
+
   useEffect(() => {
     document.title = "Products";
   }, []);
+
   const [sortBy, setSortBy] = useState<string>("default");
   const [showFilters, setShowFilters] = useState<boolean>(true);
   const [searchQuery, setSearchQuery] = useState<string>("");
@@ -46,9 +53,9 @@ export default function Products() {
       );
     }
 
-    if (selectedCategory !== "all") {
+    if (effectiveCategory !== "all") {
       filtered = filtered.filter(
-        (product) => product.category === selectedCategory,
+        (product) => product.category === effectiveCategory,
       );
     }
 
@@ -79,7 +86,7 @@ export default function Products() {
     return filtered;
   }, [
     products,
-    selectedCategory,
+    effectiveCategory,
     minPrice,
     maxPrice,
     minRating,
@@ -131,7 +138,7 @@ export default function Products() {
           <div className={styles.filterSection}>
             <h3>Category</h3>
             <select
-              value={selectedCategory}
+              value={effectiveCategory}
               onChange={(e) => setSelectedCategory(e.target.value)}
               className={styles.select}
             >

@@ -1,6 +1,5 @@
 "use client";
 
-import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -8,22 +7,14 @@ import {
   AiOutlineShoppingCart,
   AiOutlineUser,
   AiOutlineHeart,
+  AiOutlineInfoCircle,
 } from "react-icons/ai";
-import { MdStorefront, MdInfo } from "react-icons/md";
+import { MdStorefront } from "react-icons/md";
 import styles from "./navbar.module.css";
 import { useAppSelector } from "@/lib/hooks";
 
-const emptySubscribe = () => () => {};
-const useIsHydrated = () =>
-  useSyncExternalStore(
-    emptySubscribe,
-    () => true,
-    () => false,
-  );
-
 export function Navbar() {
   const pathname = usePathname();
-  const isHydrated = useIsHydrated();
   const cartTotalQuantity = useAppSelector((state) => state.cart.totalQuantity);
   const favoritesCount = useAppSelector(
     (state) => state.favorites.items.length,
@@ -65,7 +56,7 @@ export function Navbar() {
             >
               <div className={styles.cartIconWrapper}>
                 <AiOutlineShoppingCart className={styles.navIcon} />
-                {isHydrated && cartTotalQuantity > 0 && (
+                {cartTotalQuantity > 0 && (
                   <span className={styles.cartBadge}>{cartTotalQuantity}</span>
                 )}
               </div>
@@ -79,7 +70,7 @@ export function Navbar() {
             >
               <div className={styles.cartIconWrapper}>
                 <AiOutlineHeart className={styles.navIcon} />
-                {isHydrated && favoritesCount > 0 && (
+                {favoritesCount > 0 && (
                   <span className={styles.cartBadge}>{favoritesCount}</span>
                 )}
               </div>
@@ -91,7 +82,7 @@ export function Navbar() {
               href="/about"
               className={`${styles.navLink} ${isActive("/about") ? styles.active : ""}`}
             >
-              <MdInfo className={styles.navIcon} />
+              <AiOutlineInfoCircle className={styles.navIcon} />
               <span>About</span>
             </Link>
           </li>

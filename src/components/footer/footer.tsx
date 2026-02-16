@@ -57,7 +57,7 @@ export default function Footer() {
                 <Link href="/favorites">My Favorites</Link>
               </li>
               <li>
-                <Link href = "/about">About Us</Link>
+                <Link href="/about">About Us</Link>
               </li>
             </ul>
           </div>

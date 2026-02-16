@@ -11,6 +11,9 @@ import {
 } from "react-icons/fa";
 import styles from "./page.module.css";
 import type { Metadata } from "next";
+import FeaturedProducts from "@/components/FeaturedProducts/FeaturedProducts";
+import Categories from "@/components/Categories/Categories";
+import Testimonials from "@/components/Testimonials/Testimonials";
 
 export const metadata: Metadata = {
   title: "Home",
@@ -64,6 +67,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <FeaturedProducts />
+
+      <Categories />
 
       <section className={styles.features}>
         <h2 className={styles.sectionTitle}>Why Choose Us</h2>
@@ -125,6 +132,8 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Testimonials />
 
       <section className={styles.cta}>
         <div className={styles.ctaContent}>
