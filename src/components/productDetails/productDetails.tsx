@@ -3,11 +3,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
-import { FaStar, FaHeart, FaShareAlt, FaCheck } from "react-icons/fa";
+import { FaStar, FaHeart, FaShareAlt, FaCheck, FaBalanceScale } from "react-icons/fa";
 import styles from "./productDetails.module.css";
 import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/slices/cartSlice";
 import { toggleFavorite } from "@/lib/slices/favoritesSlice";
+import { toggleCompare } from "@/lib/slices/compareSlice";
 import { showToast } from "@/components/Toast/Toast";
 import type { Product } from "@/lib/types";
 
@@ -15,6 +16,8 @@ function ProductDetails() {
   const params = useParams<{ id: string }>();
   const dispatch = useAppDispatch();
   const favorites = useAppSelector((state) => state.favorites.items);
+  const compareItems = useAppSelector((state) => state.compare.items);
+  const maxCompareItems = useAppSelector((state) => state.compare.maxItems);
   const [productDetails, setProductDetails] = useState<Product | null>(null);
   const [error, setError] = useState<Error | null>(null);
   const [quantity, setQuantity] = useState<number>(1);
@@ -79,6 +82,48 @@ function ProductDetails() {
   const isFavorite = productDetails
     ? favorites.some((item) => item.id === productDetails.id)
     : false;
+
+  const isInCompare = productDetails
+    ? compareItems.some((item) => item.id === productDetails.id)
+    : false;
+
+  const handleToggleCompare = () => {
+    if (productDetails) {
+      if (isInCompare) {
+        dispatch(toggleCompare(productDetails));
+        showToast(`${productDetails.title} removed from comparison`);
+      } else if (compareItems.length >= maxCompareItems) {
+        showToast(`You can only compare up to ${maxCompareItems} products`);
+      } else {
+        dispatch(toggleCompare(productDetails));
+        showToast(`${productDetails.title} added to comparison`);
+      }
+    }
+  };
+
+  const handleShare = async () => {
+    if (!productDetails) return;
+
+    const shareData = {
+      title: productDetails.title,
+      text: `Check out ${productDetails.title} for $${productDetails.price}!`,
+      url: window.location.href,
+    };
+
+    try {
+      if (navigator.share) {
+        await navigator.share(shareData);
+      } else {
+        await navigator.clipboard.writeText(window.location.href);
+        showToast("Link copied to clipboard!");
+      }
+    } catch (error) {
+      if ((error as Error).name !== "AbortError") {
+        await navigator.clipboard.writeText(window.location.href);
+        showToast("Link copied to clipboard!");
+      }
+    }
+  };
 
   if (error) throw error;
 
@@ -179,7 +224,10 @@ function ProductDetails() {
           <button onClick={handleToggleFavorite} className={styles.iconBtn}>
             <FaHeart style={{ color: isFavorite ? "#ff4444" : "inherit" }} />
           </button>
-          <button className={styles.iconBtn}>
+          <button onClick={handleToggleCompare} className={styles.iconBtn} title={isInCompare ? "Remove from compare" : "Add to compare"}>
+            <FaBalanceScale style={{ color: isInCompare ? "#007bff" : "inherit" }} />
+          </button>
+          <button onClick={handleShare} className={styles.iconBtn}>
             <FaShareAlt />
           </button>
         </div>

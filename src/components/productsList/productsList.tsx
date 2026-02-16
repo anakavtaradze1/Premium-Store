@@ -2,10 +2,11 @@
 
 import Image from "next/image";
 import styles from "./productsList.module.css";
-import { FaStar } from "react-icons/fa";
+import { FaStar, FaBalanceScale } from "react-icons/fa";
 import Link from "next/link";
-import { useAppDispatch } from "@/lib/hooks";
+import { useAppDispatch, useAppSelector } from "@/lib/hooks";
 import { addToCart } from "@/lib/slices/cartSlice";
+import { toggleCompare } from "@/lib/slices/compareSlice";
 import { showToast } from "@/components/Toast/Toast";
 import type { Product } from "@/lib/types";
 
@@ -15,6 +16,22 @@ interface ProductsListProps {
 
 function ProductsList({ product }: ProductsListProps) {
   const dispatch = useAppDispatch();
+  const compareItems = useAppSelector((state) => state.compare.items);
+  const maxCompareItems = useAppSelector((state) => state.compare.maxItems);
+
+  const isInCompare = compareItems.some((item) => item.id === product.id);
+
+  const handleToggleCompare = () => {
+    if (isInCompare) {
+      dispatch(toggleCompare(product));
+      showToast(`${product.title} removed from comparison`);
+    } else if (compareItems.length >= maxCompareItems) {
+      showToast(`You can only compare up to ${maxCompareItems} products`);
+    } else {
+      dispatch(toggleCompare(product));
+      showToast(`${product.title} added to comparison`);
+    }
+  };
 
   const handleAddToCart = () => {
     dispatch(
@@ -49,10 +66,22 @@ function ProductsList({ product }: ProductsListProps) {
       </div>
       <p className={styles.productPrice}>Price: ${product.price}</p>
       <div className={styles.productButtons}>
-        <button onClick={handleAddToCart}>Add to cart</button>
+        <button type="button" onClick={handleAddToCart}>
+          Add to cart
+        </button>
         <Link href={`/products/details/${product.id}`}>
-          <button>See More</button>
+          <button type="button">See More</button>
         </Link>
+        <button
+          type="button"
+          onClick={handleToggleCompare}
+          className={styles.compareBtn}
+          title={isInCompare ? "Remove from compare" : "Add to compare"}
+        >
+          <FaBalanceScale
+            style={{ color: isInCompare ? "#007bff" : "inherit" }}
+          />
+        </button>
       </div>
     </div>
   );

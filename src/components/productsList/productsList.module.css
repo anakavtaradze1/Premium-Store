@@ -3,7 +3,7 @@
   padding: 10px;
   border-radius: 10px;
   background-color: rgb(251, 249, 247);
-  transition: all 0.3s ease-in-out; 
+  transition: all 0.3s ease-in-out;
 }
 .productsList:hover {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -74,10 +74,12 @@
   display: flex;
   gap: 10px;
   margin-top: 15px;
+  align-items: stretch;
 }
 .productButtons button {
   flex: 1;
-  padding: 12px 16px;
+  height: 44px;
+  padding: 0 16px;
   border: none;
   border-radius: 8px;
   cursor: pointer;
@@ -86,6 +88,9 @@
   transition: all 0.3s ease;
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 .productButtons button:first-child {
   background-color: #123d6d;
@@ -97,15 +102,35 @@
   box-shadow: 0 4px 8px rgba(18, 61, 109, 0.3);
   transform: translateY(-2px);
 }
-.productButtons button:last-child {
+.productButtons button:nth-child(2) {
   background-color: transparent;
   color: #123d6d;
   border: 2px solid #123d6d;
   box-shadow: 0 2px 4px rgba(18, 61, 109, 0.1);
 }
-.productButtons button:last-child:hover {
+.productButtons button:nth-child(2):hover {
   background-color: #123d6d;
   color: white;
   box-shadow: 0 4px 8px rgba(18, 61, 109, 0.2);
   transform: translateY(-2px);
+}
+.productButtons button.compareBtn {
+  flex: 0 0 44px;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  background-color: transparent;
+  border: 2px solid #123d6d;
+  color: #123d6d;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.productButtons button.compareBtn:hover {
+  background-color: #123d6d;
+  color: white;
+  transform: translateY(-2px);
+}
+.compareBtn svg {
+  font-size: 1.1em;
 }

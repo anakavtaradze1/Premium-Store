@@ -9,7 +9,7 @@ import {
   AiOutlineHeart,
   AiOutlineInfoCircle,
 } from "react-icons/ai";
-import { MdStorefront } from "react-icons/md";
+import { MdStorefront, MdCompareArrows } from "react-icons/md";
 import styles from "./navbar.module.css";
 import { useAppSelector } from "@/lib/hooks";
 
@@ -19,6 +19,7 @@ export function Navbar() {
   const favoritesCount = useAppSelector(
     (state) => state.favorites.items.length,
   );
+  const compareCount = useAppSelector((state) => state.compare.items.length);
 
   const isActive = (path: string) => {
     if (path === "/") {
@@ -75,6 +76,20 @@ export function Navbar() {
                 )}
               </div>
               <span>Favorites</span>
+            </Link>
+          </li>
+          <li>
+            <Link
+              href="/compare"
+              className={`${styles.navLink} ${isActive("/compare") ? styles.active : ""}`}
+            >
+              <div className={styles.cartIconWrapper}>
+                <MdCompareArrows className={styles.navIcon} />
+                {compareCount > 0 && (
+                  <span className={styles.cartBadge}>{compareCount}</span>
+                )}
+              </div>
+              <span>Compare</span>
             </Link>
           </li>
           <li>
