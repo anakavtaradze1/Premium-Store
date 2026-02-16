@@ -30,6 +30,7 @@
   text-align: center;
   padding: 100px 20px;
   color: #666;
+  min-height: calc(100vh - 80px);
 }
 .emptyIcon {
   font-size: 100px;
