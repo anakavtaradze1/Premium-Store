@@ -1,10 +1,9 @@
+import Link from "next/link";
 import {
-  FaShoppingCart,
   FaTruck,
   FaCreditCard,
-  FaUndo,
-  FaUserCircle,
-  FaQuestionCircle,
+  FaShieldAlt,
+  FaFileContract,
   FaEnvelope,
   FaPhone,
   FaComments,
@@ -19,41 +18,32 @@ export const metadata: Metadata = {
 
 const categories = [
   {
-    icon: <FaShoppingCart />,
-    title: "Orders & Purchases",
-    description:
-      "Track orders, modify purchases, and manage your order history.",
-    color: "#3b82f6",
-  },
-  {
     icon: <FaTruck />,
-    title: "Shipping & Delivery",
+    title: "Shipping Info",
     description: "Delivery times, shipping options, and tracking information.",
     color: "#10b981",
+    href: "/shipping-info",
   },
   {
     icon: <FaCreditCard />,
-    title: "Payments & Billing",
+    title: "Payment Methods",
     description: "Payment methods, invoices, and billing inquiries.",
     color: "#8b5cf6",
+    href: "/payment-methods",
   },
   {
-    icon: <FaUndo />,
-    title: "Returns & Refunds",
-    description: "Return policies, refund process, and exchange options.",
+    icon: <FaShieldAlt />,
+    title: "Privacy Policy",
+    description: "Learn how we protect and handle your personal data.",
+    color: "#3b82f6",
+    href: "/privacy-policy",
+  },
+  {
+    icon: <FaFileContract />,
+    title: "Terms & Conditions",
+    description: "Our terms of service and usage policies.",
     color: "#f59e0b",
-  },
-  {
-    icon: <FaUserCircle />,
-    title: "Account Settings",
-    description: "Manage your profile, password, and account preferences.",
-    color: "#ec4899",
-  },
-  {
-    icon: <FaQuestionCircle />,
-    title: "General Questions",
-    description: "Common questions about our products and services.",
-    color: "#6366f1",
+    href: "/terms-conditions",
   },
 ];
 
@@ -104,7 +94,11 @@ export default function HelpCenterPage() {
         <h2 className={styles.sectionTitle}>Browse by Category</h2>
         <div className={styles.categoriesGrid}>
           {categories.map((category, index) => (
-            <div key={index} className={styles.categoryCard}>
+            <Link
+              href={category.href}
+              key={index}
+              className={styles.categoryCard}
+            >
               <div
                 className={styles.categoryIcon}
                 style={{ background: category.color }}
@@ -118,7 +112,7 @@ export default function HelpCenterPage() {
               <span className={styles.categoryLink}>
                 Learn more <FaChevronRight />
               </span>
-            </div>
+            </Link>
           ))}
         </div>
       </section>

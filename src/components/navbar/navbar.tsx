@@ -1,5 +1,6 @@
 "use client";
 
+import { useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -8,12 +9,22 @@ import {
   AiOutlineUser,
   AiOutlineHeart,
   AiOutlineInfoCircle,
+  AiOutlineMenu,
+  AiOutlineClose,
 } from "react-icons/ai";
-import { MdStorefront, MdCompareArrows } from "react-icons/md";
+import { MdStorefront, MdCompareArrows, MdShoppingBag } from "react-icons/md";
 import styles from "./navbar.module.css";
 import { useAppSelector } from "@/lib/hooks";
 
+const emptySubscribe = () => () => {};
+
 export function Navbar() {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const isHydrated = useSyncExternalStore(
+    emptySubscribe,
+    () => true,
+    () => false,
+  );
   const pathname = usePathname();
   const cartTotalQuantity = useAppSelector((state) => state.cart.totalQuantity);
   const favoritesCount = useAppSelector(
@@ -28,14 +39,40 @@ export function Navbar() {
     return pathname.startsWith(path);
   };
 
+  const handleLinkClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <nav className={styles.navbar}>
       <div className={styles.container}>
-        <ul className={styles.navList}>
+        <Link href="/" className={styles.logo}>
+          <MdShoppingBag />
+        </Link>
+
+        <button
+          className={styles.burgerButton}
+          onClick={() => setIsMenuOpen(!isMenuOpen)}
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        >
+          {isMenuOpen ? <AiOutlineClose /> : <AiOutlineMenu />}
+        </button>
+
+        {isMenuOpen && (
+          <div
+            className={styles.overlay}
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
+
+        <ul
+          className={`${styles.navList} ${isMenuOpen ? styles.navListOpen : ""}`}
+        >
           <li>
             <Link
               href="/"
               className={`${styles.navLink} ${isActive("/") ? styles.active : ""}`}
+              onClick={handleLinkClick}
             >
               <AiOutlineHome className={styles.navIcon} />
               <span>Home</span>
@@ -45,6 +82,7 @@ export function Navbar() {
             <Link
               href="/products"
               className={`${styles.navLink} ${isActive("/products") ? styles.active : ""}`}
+              onClick={handleLinkClick}
             >
               <MdStorefront className={styles.navIcon} />
               <span>Products</span>
@@ -54,10 +92,11 @@ export function Navbar() {
             <Link
               href="/cart"
               className={`${styles.navLink} ${isActive("/cart") ? styles.active : ""}`}
+              onClick={handleLinkClick}
             >
               <div className={styles.cartIconWrapper}>
                 <AiOutlineShoppingCart className={styles.navIcon} />
-                {cartTotalQuantity > 0 && (
+                {isHydrated && cartTotalQuantity > 0 && (
                   <span className={styles.cartBadge}>{cartTotalQuantity}</span>
                 )}
               </div>
@@ -68,10 +107,11 @@ export function Navbar() {
             <Link
               href="/favorites"
               className={`${styles.navLink} ${isActive("/favorites") ? styles.active : ""}`}
+              onClick={handleLinkClick}
             >
               <div className={styles.cartIconWrapper}>
                 <AiOutlineHeart className={styles.navIcon} />
-                {favoritesCount > 0 && (
+                {isHydrated && favoritesCount > 0 && (
                   <span className={styles.cartBadge}>{favoritesCount}</span>
                 )}
               </div>
@@ -82,10 +122,11 @@ export function Navbar() {
             <Link
               href="/compare"
               className={`${styles.navLink} ${isActive("/compare") ? styles.active : ""}`}
+              onClick={handleLinkClick}
             >
               <div className={styles.cartIconWrapper}>
                 <MdCompareArrows className={styles.navIcon} />
-                {compareCount > 0 && (
+                {isHydrated && compareCount > 0 && (
                   <span className={styles.cartBadge}>{compareCount}</span>
                 )}
               </div>
@@ -96,6 +137,7 @@ export function Navbar() {
             <Link
               href="/about"
               className={`${styles.navLink} ${isActive("/about") ? styles.active : ""}`}
+              onClick={handleLinkClick}
             >
               <AiOutlineInfoCircle className={styles.navIcon} />
               <span>About</span>
@@ -105,6 +147,7 @@ export function Navbar() {
             <Link
               href="/profile"
               className={`${styles.navLink} ${isActive("/profile") ? styles.active : ""}`}
+              onClick={handleLinkClick}
             >
               <AiOutlineUser className={styles.navIcon} />
               <span>Profile</span>

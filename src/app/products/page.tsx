@@ -25,7 +25,7 @@ export default function Products() {
   }, []);
 
   const [sortBy, setSortBy] = useState<string>("default");
-  const [showFilters, setShowFilters] = useState<boolean>(true);
+  const [showFilters, setShowFilters] = useState<boolean>(false);
   const [searchQuery, setSearchQuery] = useState<string>("");
 
   useEffect(() => {
@@ -106,8 +106,14 @@ export default function Products() {
       <h1 className={styles.title}>Our Products</h1>
 
       <div className={styles.mainContent}>
+        {showFilters && (
+          <div
+            className={styles.filterOverlay}
+            onClick={() => setShowFilters(false)}
+          />
+        )}
         <aside
-          className={`${styles.filterSidebar} ${!showFilters ? styles.hidden : ""}`}
+          className={`${styles.filterSidebar} ${showFilters ? styles.filterOpen : ""}`}
         >
           <div className={styles.filterHeader}>
             <h2>
@@ -115,7 +121,7 @@ export default function Products() {
             </h2>
             <button
               className={styles.toggleFilters}
-              onClick={() => setShowFilters(!showFilters)}
+              onClick={() => setShowFilters(false)}
             >
               <FaTimes />
             </button>
@@ -200,8 +206,8 @@ export default function Products() {
         <div className={styles.productsArea}>
           <div className={styles.topBar}>
             <button
-              className={`${styles.toggleFiltersBtn} ${showFilters ? styles.hidden : ""}`}
-              onClick={() => setShowFilters(!showFilters)}
+              className={styles.toggleFiltersBtn}
+              onClick={() => setShowFilters(true)}
             >
               <FaFilter /> Show Filters
             </button>

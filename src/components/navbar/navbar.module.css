@@ -13,10 +13,39 @@
   align-items: center;
   width: 100%;
 }
+.logo {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 2rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: scale(1.1);
+}
+.burgerButton {
+  display: none;
+  background: none;
+  border: none;
+  color: white;
+  font-size: 1.8rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+}
+.burgerButton:hover {
+  background: rgba(255, 255, 255, 0.15);
+}
+.overlay {
+  display: none;
+}
 .navList {
   list-style: none;
   display: flex;
-  gap: 1rem;
+  gap: 2rem;
   align-items: center;
   justify-content: center;
 }
@@ -113,18 +142,80 @@
 
 @media (max-width: 768px) {
   .container {
-    padding: 0.6rem;
+    padding: 0.6rem 1.2rem;
+    justify-content: space-between;
+  }
+  .logo {
+    display: flex;
+  }
+  .burgerButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 102;
+  }
+  .overlay {
+    display: block;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(4px);
+    z-index: 99;
+    animation: fadeIn 0.3s ease;
   }
   .navList {
-    gap: 1rem;
+    position: fixed;
+    top: 0;
+    right: -100%;
+    width: 280px;
+    height: 100vh;
+    background: linear-gradient(180deg, #123d6d 0%, #361457 100%);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    padding: 5rem 1.5rem 2rem;
+    gap: 0.5rem;
+    z-index: 101;
+    transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: -5px 0 30px rgba(0, 0, 0, 0.3);
+  }
+  .navListOpen {
+    right: 0;
   }
   .navLink {
-    padding: 0.5rem;
-  }
-  .navLink span {
-    display: none;
+    padding: 1rem 1.2rem;
+    font-size: 1.1rem;
+    border-radius: 12px;
+    width: 100%;
+    justify-content: flex-start;
   }
   .navIcon {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
+  }
+  .navLink:hover {
+    transform: translateX(8px);
+  }
+  .navLink.active {
+    background: rgba(255, 255, 255, 0.2);
+    border-left: 4px solid white;
+  }
+  .cartBadge {
+    top: -6px;
+    right: -8px;
+    width: 18px;
+    height: 18px;
+    font-size: 0.7rem;
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
   }
 }

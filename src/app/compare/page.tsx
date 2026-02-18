@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { useAppSelector, useAppDispatch } from "@/lib/hooks";
 import { removeFromCompare, clearCompare } from "@/lib/slices/compareSlice";
 import { addToCart } from "@/lib/slices/cartSlice";
@@ -10,6 +11,9 @@ import { FaStar, FaBalanceScale, FaTimes } from "react-icons/fa";
 import styles from "./page.module.css";
 
 export default function ComparePage() {
+  useEffect(() => {
+    document.title = "Compare Products";
+  }, []);
   const dispatch = useAppDispatch();
   const compareItems = useAppSelector((state) => state.compare.items);
   const maxItems = useAppSelector((state) => state.compare.maxItems);
